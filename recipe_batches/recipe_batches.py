@@ -3,8 +3,40 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+    """
+    recipe_keys = recipe.keys()
+    ingredients_keys = ingredients.keys()
+    if recipe_keys != ingredients_keys:
+        return 0
 
+    count = 0
+    have_enough = True
+    while have_enough == True:
+        for key in recipe:
+            ingredients[key] -= recipe[key]
+            if ingredients[key] < 0:
+                have_enough = False
+                break
+                
+        if have_enough == True: count += 1
+
+    return count
+    """
+    recipe_keys = recipe.keys()
+    ingredients_keys = ingredients.keys()
+    if recipe_keys != ingredients_keys:
+        return 0
+
+    totals = {}
+    for key in recipe:
+        totals[key] = ingredients[key] / recipe[key]
+    
+    least = None 
+    for key in totals:
+        if least is None or (totals[key] > 1 and totals[key] < least):
+            least = totals[key]
+
+    return round(least)
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
